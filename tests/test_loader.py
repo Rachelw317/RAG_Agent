@@ -1,12 +1,14 @@
-from pathlib import Path
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader
+from pathlib import Path
 
-raw_dir = Path(__file__).resolve().parent.parent / "data" / "raw"
-documents = []
 
-for pdf_file in raw_dir.glob("*.pdf"):
-    loader = PyPDFLoader(str(pdf_file))
-    file_documents = loader.load()
-    documents.extend(file_documents)
+raw_file_dir = Path(__file__).resolve().parent.parent / "data" / "raw"
 
-print(f"Loaded {len(documents)} documents from {len(list(raw_dir.glob('*.pdf')))} PDF files.")
+document_list = []
+
+for file in raw_file_dir.iterdir():
+    if file.suffix == ".pdf":
+        loader = PyMuPDFLoader(file)
+        document_list.extend(loader.load())
+
