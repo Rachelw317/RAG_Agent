@@ -8,8 +8,3 @@ splitter = RecursiveCharacterTextSplitter(
 )
 
 chunks = splitter.split_documents(document_list)
-
-print(f"Number of chunks: {len(chunks)}")
-print(f"First chunk type: {type(chunks[0])}")
-print(f"First chunk content: {chunks[0].page_content[:]}")
-print(f"Second chunk content: {chunks[1].page_content[:]}")
